@@ -2,6 +2,27 @@
 #include "stdlib.h"
 #include "TreesLib.h"
 
+
+int treenum(tree t)
+{
+	if (!t)
+		return 0  ;
+	return 1 + treenum(t->r) + treenum(t->l) ; 
+}
+
+int treesum(tree t)
+{
+	if (!t)
+		return 0 ; 
+	return t->value + treesum(t->l)+treesum(t->r) ; 
+}
+
+int treemax(tree t)
+{
+	if (!t)
+		return -1;
+	return max (t->value,max(treemax(t->l),treemax(t->r))) ; 
+}
 int main()
 {
     freopen("in.txt", "r+", stdin);
@@ -16,7 +37,5 @@ int main()
     t->l->r->l = createLeaf(4);
     t->l->r->r = createLeaf(7);
     levelOrderTraversal(t);
-    printf("\n");
-    insertIntoBST(t,11);
-    levelOrderTraversal(t);
+    printf("%d\n",treemax(t));
 }
