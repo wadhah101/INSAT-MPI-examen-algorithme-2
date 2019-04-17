@@ -15,13 +15,4 @@ int main()
     t->l->r = createLeaf(6);
     t->l->r->l = createLeaf(4);
     t->l->r->r = createLeaf(8);
-    tree q = NULL ;
-    int a[10000];
-    int n = 2000 ; 
-    for (int i = 0 ; i<n ; i++)
-    a[i] = i ; 
-    q = fillBSTfromSortedArray(a,n,q) ;
-    levelOrderTraversal(q);
-
-
 }
