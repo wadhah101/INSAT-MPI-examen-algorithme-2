@@ -96,6 +96,11 @@ tree adjg(tree h, tree t)
 }
 tree insertIntoBST(tree t, int n)
 {
+    if (!t)
+      {
+        t = createLeaf(n);
+        return t; 
+      }
     if (n > t->value)
     {
         if (!t->r)
@@ -116,4 +121,17 @@ tree insertIntoBST(tree t, int n)
         else
             t = adjg(t, insertIntoBST(t->l, n)) ;
     }
+}
+
+int treesum(tree t)
+{
+	if (!t)
+		return 0 ;
+	return t->value + treesum(t->l)+treesum(t->r) ;
+}
+int treemax(tree t)
+{
+	if (!t)
+		return -1;
+	return max (t->value,max(treemax(t->l),treemax(t->r))) ;
 }

@@ -1,0 +1,4 @@
+/home/wadhah/GitKraken/MPI-Algorithmique/Trees/Problem.c: In function ‘OrderedArraytoBST_Tree’:
+/home/wadhah/GitKraken/MPI-Algorithmique/Trees/Problem.c:17:1: error: expected ‘;’ before ‘}’ token
+ }
+ ^
