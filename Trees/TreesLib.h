@@ -73,15 +73,7 @@ void printlevel(tree t, int n)
             printlevel(t->r, n - 1);
     }
 }
-void levelOrderTraversal(tree t)
-{
-    int l = treeHeight(t);
-    for (int i = 0 ; i < l ; i++)
-    {
-        printlevel(t, i);
-        printf("\n");
-    }
-}
+
 
 tree adjd(tree h, tree t)
 {
@@ -94,47 +86,8 @@ tree adjg(tree h, tree t)
     h->l = t ;
     return h ;
 }
-tree insertIntoBST(tree t, int n)
-{
-    if (!t)
-      {
-        t = createLeaf(n);
-        return t; 
-      }
-    if (n > t->value)
-    {
-        if (!t->r)
-        {
-            t->r = createLeaf(n);
-            return t ;
-        }
-        else
-            t = adjd(t, insertIntoBST(t->r, n)) ;
-    }
-    else if (n < t->value)
-    {
-        if (!t->l)
-        {
-            t->l = createLeaf(n);
-            return t ;
-        }
-        else
-            t = adjg(t, insertIntoBST(t->l, n)) ;
-    }
-}
 
-int treesum(tree t)
-{
-	if (!t)
-		return 0 ;
-	return t->value + treesum(t->l)+treesum(t->r) ;
-}
-int treemax(tree t)
-{
-	if (!t)
-		return -1;
-	return max (t->value,max(treemax(t->l),treemax(t->r))) ;
-}
+
 
 struct node
 {
@@ -156,7 +109,7 @@ void printlist(list l)
 list createnode(tree x)
 {
   list l;
-  l = (list)malloc(sizeof(node));
+  l = (list)malloc(sizeof(Node));
   l->val = x;
   l->next = NULL;
   return l;
@@ -173,3 +126,12 @@ list adjt(list l,tree e)
   temp->next = l;
   return temp;
 }
+list adjq(list l, tree e)
+{
+  if (!l)
+    return adjt(l, e);
+  else
+    return adjt(adjq(l->next, e), l->val);
+}
+
+//test
