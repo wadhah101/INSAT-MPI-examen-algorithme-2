@@ -3,25 +3,20 @@
 #include "TreesLib.h"
 
 
-int treenum(tree t)
-{
-	if (!t)
-		return 0  ;
-	return 1 + treenum(t->r) + treenum(t->l) ; 
-}
 
 int treesum(tree t)
 {
 	if (!t)
-		return 0 ; 
-	return t->value + treesum(t->l)+treesum(t->r) ; 
+		return 0 ;
+	return t->value + treesum(t->l)+treesum(t->r) ;
 }
+//com
 
 int treemax(tree t)
 {
 	if (!t)
 		return -1;
-	return max (t->value,max(treemax(t->l),treemax(t->r))) ; 
+	return max (t->value,max(treemax(t->l),treemax(t->r))) ;
 }
 int main()
 {
