@@ -135,3 +135,41 @@ int treemax(tree t)
 		return -1;
 	return max (t->value,max(treemax(t->l),treemax(t->r))) ;
 }
+
+struct node
+{
+  tree val;
+  struct node *next;
+};
+typedef struct node Node;
+typedef Node *list;
+
+void printlist(list l)
+{
+  if (l)
+  {
+    printf("%d ", l->val->value);
+    printlist(l->next);
+  } 
+}
+
+list createnode(tree x)
+{
+  list l;
+  l = (list)malloc(sizeof(node));
+  l->val = x;
+  l->next = NULL;
+  return l;
+}
+
+list adjt(list l,tree e)
+{
+  if (!l)
+  {
+    l = createnode(e);
+    return l;
+  }
+  list temp = createnode(e);
+  temp->next = l;
+  return temp;
+}
