@@ -150,7 +150,7 @@ void LevT(list l)
     {
         //traitement sur l
         printInversedList(l);
-        printf("\n");
+        printf("\n\n");
         while (l)
         {
             if (l->val->r)
@@ -224,6 +224,10 @@ void LevTinsert(list *l, int e)
 void insertIntoBST(tree *t, int e)
 {
     //insert into the first free position of t 
+    if (!(*t))
+    {
+        *t = createLeaf(e) ;
+    }
     list l = createnode(*t);
     LevTinsert(&l, e);
 }

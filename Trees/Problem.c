@@ -1,5 +1,7 @@
 #include "TreesLib.h"
 
+
+
 int main()
 {
     freopen("in.txt", "r+", stdin);
@@ -13,12 +15,13 @@ int main()
     t->l->r = createLeaf(6);
     t->l->r->l = createLeaf(4);
     t->l->r->r = createLeaf(8);
-    levelOrderTraversal(t);
-    insertIntoBST(&t,70);
-    insertIntoBST(&t,89);
-    levelOrderTraversal(t);
-    //   tree q = NULL ;
-    //  int a[] = {1,4,5,6,8,20,78,100,200,700,800,5000,10000} ;
-    // levelOrderTraversal(q);
+    tree q = NULL ;
+    int a[10000];
+    int n = 2000 ; 
+    for (int i = 0 ; i<n ; i++)
+    a[i] = i ; 
+    q = fillBSTfromSortedArray(a,n,q) ;
+    levelOrderTraversal(q);
+
 
 }
