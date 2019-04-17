@@ -1,36 +1,4 @@
-#include "stdio.h"
-#include "stdlib.h"
 #include "TreesLib.h"
-
-
-void LevT(list l)
-{
-	list l2 = NULL ; 
-	if (l)
-	{
-		//traitement sur l
-		printlist(l);
-		printf("\n");
-		while (l)
-		{
-			if (l->val->r)
-				l2 = adjq(l2,l->val->r);
-			if (l->val->l)
-				l2 = adjq(l2,l->val->l)	;	
-			l = l->next ; 		
-		}
-		LevT(l2);
-	}
-	else 
-		return ; 
-}
-
-void levelOrderTraversal(tree t)
-{
-    list l = createnode(t);
-    LevT(l);
-}
-
 
 int main()
 {
@@ -45,9 +13,12 @@ int main()
     t->l->r = createLeaf(6);
     t->l->r->l = createLeaf(4);
     t->l->r->r = createLeaf(8);
-     levelOrderTraversal(t);
- //   tree q = NULL ; 
-  //  int a[] = {1,4,5,6,8,20,78,100,200,700,800,5000,10000} ; 
-   // levelOrderTraversal(q);
+    levelOrderTraversal(t);
+    insertIntoBST(&t,70);
+    insertIntoBST(&t,89);
+    levelOrderTraversal(t);
+    //   tree q = NULL ;
+    //  int a[] = {1,4,5,6,8,20,78,100,200,700,800,5000,10000} ;
+    // levelOrderTraversal(q);
 
 }

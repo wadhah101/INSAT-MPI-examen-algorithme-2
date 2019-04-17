@@ -1,5 +1,5 @@
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct leaf
 {
@@ -133,5 +133,100 @@ list adjq(list l, tree e)
   else
     return adjt(adjq(l->next, e), l->val);
 }
+
+void printInversedList(list l)
+{
+    if (l)
+    {
+        printInversedList(l->next) ;
+        printf("%d ",l->val->value);
+    }
+}
+
+void LevT(list l)
+{
+    list l2 = NULL ; 
+    if (l)
+    {
+        //traitement sur l
+        printInversedList(l);
+        printf("\n");
+        while (l)
+        {
+            if (l->val->r)
+                l2 = adjq(l2,l->val->r);
+            if (l->val->l)
+                l2 = adjq(l2,l->val->l) ;   
+            l = l->next ;       
+        }
+        LevT(l2);
+    }
+    else 
+        return ; 
+}
+
+void levelOrderTraversal(tree t)
+{
+    list l = createnode(t);
+    LevT(l);
+}
+
+int searchElement(list l,int n)
+{
+    if (!l)
+        return 0 ; 
+    else 
+    {
+        if (l->val->value == n)
+            return 1 ; 
+        else 
+            return searchElement(l->next,n);
+    }
+}
+
+void LevTinsert(list *l, int e)
+{
+    list l2 = NULL ;
+    if (l)
+    {
+        //traitement sur l
+        list nav = *l;
+        while(nav)
+        {
+            if (searchElement(nav,e))
+                return ;
+            if((nav->val->value < e) && !nav->val->r)
+            {
+                nav->val->r = createLeaf(e);
+                return ;
+            }
+            else if ((nav->val->value > e) && !nav->val->l)
+            {
+                nav->val->l = createLeaf(e);
+                return ;
+            }
+            nav = nav->next;
+        }
+        while (*l)
+        {
+            if ((*l)->val->r)
+                l2 = adjq(l2, (*l)->val->r);
+            if ((*l)->val->l)
+                l2 = adjq(l2, (*l)->val->l) ;
+            *l = (*l)->next ;
+        }
+        LevTinsert(&l2,e);
+    }
+    else
+        return ;
+}
+
+void insertIntoBST(tree *t, int e)
+{
+    //insert into the first free position of t 
+    list l = createnode(*t);
+    LevTinsert(&l, e);
+}
+
 
 //test
