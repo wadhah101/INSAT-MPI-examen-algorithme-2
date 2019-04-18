@@ -10,7 +10,7 @@ typedef struct leaf
 typedef  leaf *tree  ;
 
 
-tree createLeaf(int n)
+tree creatLeaf(int n)
 {
     tree t = (tree)malloc(sizeof(leaf)) ;
     t->value = n ;
@@ -90,53 +90,51 @@ tree adjg(tree h, tree t)
 
 
 
-struct node
+typedef struct Tnode
 {
     tree val;
-    struct node *next;
-};
-typedef struct node Node;
-typedef Node *list;
+    struct Tnode *next;
+} Tnode, *Tlist;
 
-void printlist(list l)
+void printTlist(Tlist l)
 {
     if (l)
     {
         printf("%d ", l->val->value);
-        printlist(l->next);
+        printTlist(l->next);
     }
 }
 
-list createnode(tree x)
+Tlist createTnode(tree x)
 {
-    list l;
-    l = (list)malloc(sizeof(Node));
+    Tlist l;
+    l = (Tlist)malloc(sizeof(Tnode));
     l->val = x;
     l->next = NULL;
     return l;
 }
 
-list adjt(list l, tree e)
+Tlist adjtT(Tlist l, tree e)
 {
     if (!l)
     {
-        l = createnode(e);
+        l = createTnode(e);
         return l;
     }
-    list temp = createnode(e);
+    Tlist temp = createTnode(e);
     temp->next = l;
     return temp;
 }
 
-list adjq(list l, tree e)
+Tlist adjqT(Tlist l, tree e)
 {
     if (!l)
-        return adjt(l, e);
+        return adjtT(l, e);
     else
-        return adjt(adjq(l->next, e), l->val);
+        return adjtT(adjqT(l->next, e), l->val);
 }
 
-void printInversedList(list l)
+void printInversedList(Tlist l)
 {
     if (l)
     {
@@ -145,20 +143,20 @@ void printInversedList(list l)
     }
 }
 
-void LevT(list l)
+void LevT(Tlist l)
 {
-    list l2 = NULL ;
+    Tlist l2 = NULL ;
     if (l)
     {
         //traitement sur l
         printInversedList(l);
-        printf("\n\n");
+        printf("\n");
         while (l)
         {
             if (l->val->r)
-                l2 = adjq(l2, l->val->r);
+                l2 = adjqT(l2, l->val->r);
             if (l->val->l)
-                l2 = adjq(l2, l->val->l) ;
+                l2 = adjqT(l2, l->val->l) ;
             l = l->next ;
         }
         LevT(l2);
@@ -169,11 +167,12 @@ void LevT(list l)
 
 void levelOrderTraversal(tree t)
 {
-    list l = createnode(t);
+    Tlist l = createTnode(t);
     LevT(l);
+    printf("\n");
 }
 
-int searchElement(list l, int n)
+int searchElement(Tlist l, int n)
 {
     if (!l)
         return 0 ;
@@ -186,25 +185,25 @@ int searchElement(list l, int n)
     }
 }
 
-void LevTinsert(list *l, int e)
+void LevTinsert(Tlist *l, int e)
 {
-    list l2 = NULL ;
+    Tlist l2 = NULL ;
     if (l)
     {
         //traitement sur l
-        list nav = *l;
+        Tlist nav = *l;
         while(nav)
         {
             if (searchElement(nav, e))
                 return ;
             if((nav->val->value < e) && !nav->val->r)
             {
-                nav->val->r = createLeaf(e);
+                nav->val->r = creatLeaf(e);
                 return ;
             }
             else if ((nav->val->value > e) && !nav->val->l)
             {
-                nav->val->l = createLeaf(e);
+                nav->val->l = creatLeaf(e);
                 return ;
             }
             nav = nav->next;
@@ -212,9 +211,9 @@ void LevTinsert(list *l, int e)
         while (*l)
         {
             if ((*l)->val->r)
-                l2 = adjq(l2, (*l)->val->r);
+                l2 = adjqT(l2, (*l)->val->r);
             if ((*l)->val->l)
-                l2 = adjq(l2, (*l)->val->l) ;
+                l2 = adjqT(l2, (*l)->val->l) ;
             *l = (*l)->next ;
         }
         LevTinsert(&l2, e);
@@ -228,9 +227,9 @@ void insertIntoBST(tree *t, int e)
     //insert into the first free position of t
     if (!(*t))
     {
-        *t = createLeaf(e) ;
+        *t = creatLeaf(e) ;
     }
-    list l = createnode(*t);
+    Tlist l = createTnode(*t);
     LevTinsert(&l, e);
 }
 
@@ -245,4 +244,25 @@ tree fillBSTfromSortedArray(int *a, int n, tree t)
     if (n % 2 == 0)
         insertIntoBST(&t, a[0]) ;
     return t ;
+}
+
+void printTreeTool(tree t,int space)
+{
+    if (!t)
+    {
+        printf("\n");
+        return ; 
+    }
+    else 
+    {
+        printTreeTool(t->r,space+5);
+        for (int i = 0 ; i<space ;i++)
+            printf(" ");
+        printf("%5d",t->value);
+        printTreeTool(t->l,space+5);
+    }
+}
+void printTree(tree t)
+{
+    printTreeTool(t,0);
 }
