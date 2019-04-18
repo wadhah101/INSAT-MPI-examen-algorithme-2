@@ -5,7 +5,7 @@ typedef struct node
 {
     int val;
     struct node *next;
-}node ,*list,*pile;
+} node, *list, *pile;
 
 void printlist(list l)
 {
@@ -14,7 +14,7 @@ void printlist(list l)
         printf("%d ", l->val);
         printlist(l->next);
     }
-    else 
+    else
         printf("\n");
 }
 

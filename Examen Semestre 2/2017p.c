@@ -76,6 +76,31 @@ list decompression(listC li)
 
 }
 
+file inverse(file f)
+{
+    int kept = 1 ;
+    file f0 = creatFile();
+    int n = 0 ;
+    while (!VideFile(f))
+    {
+        enfiler(&f0, teteFile(f));
+        defiler(&f);
+        n++;
+    }
+    for (int i = n - 1 ; i >= 0 ; i--)
+    {
+        for (int j = 0 ; j <i; j++ )
+        	{
+        		enfiler(&f0,teteFile(f0));
+        		defiler(&f0);
+        	}
+        	enfiler(&f,teteFile(f0));
+        	defiler(&f0);
+        }
+
+    return f ;
+}
+
 int main()
 {
     freopen("in.txt", "r+", stdin);
@@ -86,4 +111,10 @@ int main()
     printlistC(li);
     list lk = decompression(li);
     printlist(lk);
+    file f = creatFile();
+    for (int i = 0 ; i < 20 ; i++)
+        enfiler(&f, i);
+    printFile(&f);
+    file f0 = inverse(f);
+    printFile(&f0);
 }
