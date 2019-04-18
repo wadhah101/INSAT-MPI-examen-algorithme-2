@@ -1,7 +1,6 @@
 #include "../Mylibs/List_lib.h"
 #include "../Mylibs/Tree_lib.h"
 
-
 //EX1
 typedef struct nodeC
 {
@@ -118,7 +117,7 @@ void suppred(tree *t, int n)
                 (*t)->l = temp ->l ;
                 free(temp);
                 if ((*t)->l == NULL)
-                    break ; 
+                    break ;
             }
         }
         suppred(&(*t)->l, n);
@@ -142,12 +141,7 @@ int main()
     t->r->l->l = creatLeaf(6);
     t->r->l->l->l = creatLeaf(5);
     printTree(t);
-    suppred(&t,6);
+    suppred(&t, 6);
     printf("\n\n\nModified tree: \n\n\n");
     printTree(t);
-
-
-
-
-
 }

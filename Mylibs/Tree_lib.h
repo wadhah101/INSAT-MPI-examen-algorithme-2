@@ -9,7 +9,6 @@ typedef struct leaf
 
 typedef  leaf *tree  ;
 
-
 tree creatLeaf(int n)
 {
     tree t = (tree)malloc(sizeof(leaf)) ;
@@ -41,8 +40,6 @@ void inOrderTraversal(tree t)
     inOrderTraversal(t->l);
     printf("%d\n", t->value);
     inOrderTraversal(t->r);
-
-
 }
 
 void postOrderTraversal(tree t)
@@ -75,7 +72,6 @@ void printlevel(tree t, int n)
     }
 }
 
-
 tree adjd(tree h, tree t)
 {
     h->r = t ;
@@ -87,8 +83,6 @@ tree adjg(tree h, tree t)
     h->l = t ;
     return h ;
 }
-
-
 
 typedef struct Tnode
 {
@@ -246,23 +240,23 @@ tree fillBSTfromSortedArray(int *a, int n, tree t)
     return t ;
 }
 
-void printTreeTool(tree t,int space)
+void printTreeTool(tree t, int space)
 {
     if (!t)
     {
         printf("\n");
-        return ; 
+        return ;
     }
-    else 
+    else
     {
-        printTreeTool(t->r,space+5);
-        for (int i = 0 ; i<space ;i++)
+        printTreeTool(t->r, space + 5);
+        for (int i = 0 ; i < space ; i++)
             printf(" ");
-        printf("%5d",t->value);
-        printTreeTool(t->l,space+5);
+        printf("%5d", t->value);
+        printTreeTool(t->l, space + 5);
     }
 }
 void printTree(tree t)
 {
-    printTreeTool(t,0);
+    printTreeTool(t, 0);
 }
