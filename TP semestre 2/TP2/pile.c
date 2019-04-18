@@ -200,5 +200,7 @@ int main()
     printf("File apres 2 defiler: ");
     printFile(&f);
     printf("Longeur de File: %d\n", LongeurFile(&f));
+    printf("\n");
     return 0 ;
+    // 
 }
