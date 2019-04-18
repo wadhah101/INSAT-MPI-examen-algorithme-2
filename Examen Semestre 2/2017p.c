@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "../Mylibs/List_lib.h"
 
 
 int main()
