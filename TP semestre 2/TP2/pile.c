@@ -193,6 +193,7 @@ int main()
     enfiler(&f, 5);
     printFile(&f);
     enfiler(&f, 100);
+    enfiler(&f, 1008);
     printf("File apres enfiler: ");
     printFile(&f);
     defiler(&f);
