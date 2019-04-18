@@ -1,7 +1,3 @@
-/* This source has been formatted by an unregistered SourceFormatX */
-/* If you want to remove this info, please register this shareware */
-/* Please visit http://www.textrush.com to get more information    */
-
 #include <stdio.h>
 #include <stdlib.h> 
 
