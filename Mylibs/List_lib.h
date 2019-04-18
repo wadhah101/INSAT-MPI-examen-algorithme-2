@@ -14,6 +14,8 @@ void printlist(list l)
         printf("%d ", l->val);
         printlist(l->next);
     }
+    else 
+        printf("\n");
 }
 
 list createnode(int x)
