@@ -1,1 +1,1 @@
-MPI Algorithmique 
+MPI algorithm work 
