@@ -190,12 +190,12 @@ void LevTinsert(Tlist *l, int e)
         {
             if (searchElement(nav, e))
                 return ;
-            if((nav->val->value < e) && !nav->val->r)
+            if(!nav->val->r)
             {
                 nav->val->r = creatLeaf(e);
                 return ;
             }
-            else if ((nav->val->value > e) && !nav->val->l)
+            else if (!nav->val->l)
             {
                 nav->val->l = creatLeaf(e);
                 return ;
@@ -216,7 +216,7 @@ void LevTinsert(Tlist *l, int e)
         return ;
 }
 
-void insertIntoBST(tree *t, int e)
+void insertIntoTree(tree *t, int e)
 {
     //insert into the first free position of t
     if (!(*t))
@@ -227,16 +227,13 @@ void insertIntoBST(tree *t, int e)
     LevTinsert(&l, e);
 }
 
-tree fillBSTfromSortedArray(int *a, int n, tree t)
+tree fillfromArray(int *a, int n)
 {
-    int k = n / 2 ;
-    for (int i = 0 ; i + k < n ; i++)
+    tree t = NULL ;
+    for (int i = 0 ; i < n ; i++)
     {
-        insertIntoBST(&t, a[k + i]);
-        insertIntoBST(&t, a[k - i]);
+        insertIntoTree(&t, a[k + i]);
     }
-    if (n % 2 == 0)
-        insertIntoBST(&t, a[0]) ;
     return t ;
 }
 
