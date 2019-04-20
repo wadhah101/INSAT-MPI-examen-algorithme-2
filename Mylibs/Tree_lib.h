@@ -223,7 +223,7 @@ void insertIntoTree(tree *t, int e)
     {
         *t = creatLeaf(e) ;
     }
-    Tlist l = createTnode(*t);
+    Tlist l = createTnode(*t); 
     LevTinsert(&l, e);
 }
 
@@ -232,7 +232,7 @@ tree fillfromArray(int *a, int n)
     tree t = NULL ;
     for (int i = 0 ; i < n ; i++)
     {
-        insertIntoTree(&t, a[k + i]);
+        insertIntoTree(&t, a[i]);
     }
     return t ;
 }
@@ -249,7 +249,7 @@ void printTreeTool(tree t, int space)
         printTreeTool(t->r, space + 5);
         for (int i = 0 ; i < space ; i++)
             printf(" ");
-        printf("%5d", t->value);
+        printf("%5d\n", t->value);
         printTreeTool(t->l, space + 5);
     }
 }
