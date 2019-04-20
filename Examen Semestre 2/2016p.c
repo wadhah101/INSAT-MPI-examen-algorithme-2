@@ -1,7 +1,7 @@
 #include "../Mylibs/Tree_lib.h"
 
 
-void destructTree1(tree *t)
+void destructTree(tree *t)
 {
     tree *a1, *a2;
     a1 = (tree *)malloc(sizeof(tree));
@@ -29,9 +29,27 @@ void destructTree1(tree *t)
         a1 = a2 ;
     }
     *t = NULL ;
-
 }
 
+void recursiveDestructTree(tree *t)
+{
+	if (!(*t))
+		return ;
+	recursiveDestructTree(&(*t)->l);
+	recursiveDestructTree(&(*t)->r);
+	free(*t);
+	*t = NULL ; 
+}
+//EX3
+void treeParititon(tree *a,tree *x)
+{
+	if (!(*a))
+		exit(70);
+	if ((*a)->data == (*x)->data)
+	{
+		(*x)
+	}
+} 
 int main()
 {
     freopen("in.txt", "r+", stdin);
@@ -45,7 +63,7 @@ int main()
     t->r->l = creatLeaf(22);
     t->r->r = creatLeaf(54);
     //   printTree(t);
-    destructTree1(&t);
+    recursiveDestructTree(&t);
     printTree(t);
 
 

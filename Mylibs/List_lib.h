@@ -91,7 +91,7 @@ int tetePile(pile p)
     return p->data ;
 }
 
-int LongeurPile(pile p)
+int pileLength(pile p)
 {
     int num = 0 ;
     pile q = creatPile();
