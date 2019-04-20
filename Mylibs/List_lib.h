@@ -3,7 +3,7 @@
 
 typedef struct node
 {
-    int val;
+    int data;
     struct node *next;
 } node, *list, *pile;
 
@@ -11,7 +11,7 @@ void printlist(list l)
 {
     if (l)
     {
-        printf("%d ", l->val);
+        printf("%d ", l->data);
         printlist(l->next);
     }
     else
@@ -22,7 +22,7 @@ list createnode(int x)
 {
     list l;
     l = (list)malloc(sizeof(node));
-    l->val = x;
+    l->data = x;
     l->next = NULL;
     return l;
 }
@@ -44,7 +44,7 @@ list adjq(list l, int e)
     if (!l)
         return adjt(l, e);
     else
-        return adjt(adjq(l->next, e), l->val);
+        return adjt(adjq(l->next, e), l->data);
 }
 
 list readList(list l, int n)
@@ -74,7 +74,7 @@ int emptyPile(pile p)
 void empiler(pile *p, int n)
 {
     pile y = (pile)malloc(sizeof(node)) ;
-    y->val = n ;
+    y->data = n ;
     y->next = *p ;
     *p = y ;
 }
@@ -88,7 +88,7 @@ void depiler(pile *p)
 
 int tetePile(pile p)
 {
-    return p->val ;
+    return p->data ;
 }
 
 int LongeurPile(pile p)
@@ -149,7 +149,7 @@ void emfiler(file *f, int n)
 {
     node *temp ;
     temp = (node *)malloc(sizeof(node));
-    temp->val = n ;
+    temp->data = n ;
     temp->next = NULL;
     if (emptyFile(*f))
     {
@@ -166,7 +166,7 @@ void emfiler(file *f, int n)
 void defiler(file *f)
 {
     if (emptyFile(*f))
-        return ; 
+        return ;
     if (f->first == f->last)
     {
         free(f->first);
@@ -182,7 +182,7 @@ void defiler(file *f)
 
 int teteFile(file f)
 {
-    return f.first->val;
+    return f.first->data;
 }
 
 int LongeurFile(file *f)

@@ -3,7 +3,7 @@
 
 typedef struct leaf
 {
-    int value ;
+    int data ;
     struct leaf *l, *r ;
 } leaf;
 
@@ -12,7 +12,7 @@ typedef  leaf *tree  ;
 tree creatLeaf(int n)
 {
     tree t = (tree)malloc(sizeof(leaf)) ;
-    t->value = n ;
+    t->data = n ;
     t->l = NULL ;
     t->r = NULL ;
 }
@@ -28,7 +28,7 @@ void preOrderTraversal(tree t)
 {
     if (!t)
         return ;
-    printf("%d\n", t->value);
+    printf("%d\n", t->data);
     preOrderTraversal(t->l);
     preOrderTraversal(t->r);
 }
@@ -38,7 +38,7 @@ void inOrderTraversal(tree t)
     if (!t)
         return ;
     inOrderTraversal(t->l);
-    printf("%d\n", t->value);
+    printf("%d\n", t->data);
     inOrderTraversal(t->r);
 }
 
@@ -48,7 +48,7 @@ void postOrderTraversal(tree t)
         return ;
     postOrderTraversal(t->l);
     postOrderTraversal(t->r);
-    printf("%d\n", t->value);
+    printf("%d\n", t->data);
 }
 
 int treeHeight(tree t)
@@ -62,7 +62,7 @@ int treeHeight(tree t)
 void printlevel(tree t, int n)
 {
     if (!n)
-        printf("%d | ", t->value);
+        printf("%d | ", t->data);
     else
     {
         if (t->l)
@@ -86,7 +86,7 @@ tree adjg(tree h, tree t)
 
 typedef struct Tnode
 {
-    tree val;
+    tree data;
     struct Tnode *next;
 } Tnode, *Tlist;
 
@@ -94,7 +94,7 @@ void printTlist(Tlist l)
 {
     if (l)
     {
-        printf("%d ", l->val->value);
+        printf("%d ", l->data->data);
         printTlist(l->next);
     }
 }
@@ -103,7 +103,7 @@ Tlist createTnode(tree x)
 {
     Tlist l;
     l = (Tlist)malloc(sizeof(Tnode));
-    l->val = x;
+    l->data = x;
     l->next = NULL;
     return l;
 }
@@ -125,7 +125,7 @@ Tlist adjqT(Tlist l, tree e)
     if (!l)
         return adjtT(l, e);
     else
-        return adjtT(adjqT(l->next, e), l->val);
+        return adjtT(adjqT(l->next, e), l->data);
 }
 
 void printInversedList(Tlist l)
@@ -133,7 +133,7 @@ void printInversedList(Tlist l)
     if (l)
     {
         printInversedList(l->next) ;
-        printf("%d ", l->val->value);
+        printf("%d ", l->data->data);
     }
 }
 
@@ -147,10 +147,10 @@ void LevT(Tlist l)
         printf("\n");
         while (l)
         {
-            if (l->val->r)
-                l2 = adjqT(l2, l->val->r);
-            if (l->val->l)
-                l2 = adjqT(l2, l->val->l) ;
+            if (l->data->r)
+                l2 = adjqT(l2, l->data->r);
+            if (l->data->l)
+                l2 = adjqT(l2, l->data->l) ;
             l = l->next ;
         }
         LevT(l2);
@@ -172,7 +172,7 @@ int searchElement(Tlist l, int n)
         return 0 ;
     else
     {
-        if (l->val->value == n)
+        if (l->data->data == n)
             return 1 ;
         else
             return searchElement(l->next, n);
@@ -190,24 +190,24 @@ void LevTinsert(Tlist *l, int e)
         {
             if (searchElement(nav, e))
                 return ;
-            if(!nav->val->r)
+            if(!nav->data->r)
             {
-                nav->val->r = creatLeaf(e);
+                nav->data->r = creatLeaf(e);
                 return ;
             }
-            else if (!nav->val->l)
+            else if (!nav->data->l)
             {
-                nav->val->l = creatLeaf(e);
+                nav->data->l = creatLeaf(e);
                 return ;
             }
             nav = nav->next;
         }
         while (*l)
         {
-            if ((*l)->val->r)
-                l2 = adjqT(l2, (*l)->val->r);
-            if ((*l)->val->l)
-                l2 = adjqT(l2, (*l)->val->l) ;
+            if ((*l)->data->r)
+                l2 = adjqT(l2, (*l)->data->r);
+            if ((*l)->data->l)
+                l2 = adjqT(l2, (*l)->data->l) ;
             *l = (*l)->next ;
         }
         LevTinsert(&l2, e);
@@ -223,7 +223,7 @@ void insertIntoTree(tree *t, int e)
     {
         *t = creatLeaf(e) ;
     }
-    Tlist l = createTnode(*t); 
+    Tlist l = createTnode(*t);
     LevTinsert(&l, e);
 }
 
@@ -249,7 +249,7 @@ void printTreeTool(tree t, int space)
         printTreeTool(t->r, space + 5);
         for (int i = 0 ; i < space ; i++)
             printf(" ");
-        printf("%5d\n", t->value);
+        printf("%5d\n", t->data);
         printTreeTool(t->l, space + 5);
     }
 }

@@ -4,7 +4,7 @@
 //EX1
 typedef struct nodeC
 {
-    int val ;
+    int data ;
     int num ;
     struct nodeC *next ;
 } nodeC, *listC;
@@ -13,7 +13,7 @@ listC createnodeC(int x)
 {
     listC l;
     l = (listC)malloc(sizeof(nodeC));
-    l->val = x;
+    l->data = x;
     l->num = 1;
     l->next = NULL;
     return l;
@@ -35,7 +35,7 @@ void printlistC(listC l)
 {
     if (l)
     {
-        printf("(%d , %d) ", l->val, l->num);
+        printf("(%d , %d) ", l->data, l->num);
         printlistC(l->next);
     }
     else
@@ -51,15 +51,15 @@ listC compression(list l)
         listC li = compression(l->next);
         if (!li)
         {
-            return createnodeC(l->val);
+            return createnodeC(l->data);
         }
-        if (l->val == li->val)
+        if (l->data == li->data)
         {
             li->num ++ ;
             return li ;
         }
         else
-            return adjtC(li, l->val);
+            return adjtC(li, l->data);
     }
 }
 
@@ -71,7 +71,7 @@ list decompression(listC li)
     {
         list l = decompression(li->next);
         for (int i = 0 ; i < li->num; i++)
-            l = adjt(l, li->val);
+            l = adjt(l, li->data);
         return l ;
     }
 
@@ -84,9 +84,9 @@ file inverse(file f)
     int kept = 1 ;
     file f0 = creatFile();
     int n = 0 ;
-    while (!VideFile(f))
+    while (!emptyFile(f))
     {
-        enfiler(&f0, teteFile(f));
+        emfiler(&f0, teteFile(f));
         defiler(&f);
         n++;
     }
@@ -94,10 +94,10 @@ file inverse(file f)
     {
         for (int j = 0 ; j < i; j++ )
         {
-            enfiler(&f0, teteFile(f0));
+            emfiler(&f0, teteFile(f0));
             defiler(&f0);
         }
-        enfiler(&f, teteFile(f0));
+        emfiler(&f, teteFile(f0));
         defiler(&f0);
     }
 
@@ -109,9 +109,9 @@ void suppred(tree *t, int n)
 {
     if (*t)
     {
-        if ((*t)->value == n && (*t)->l)
+        if ((*t)->data == n && (*t)->l)
         {
-            while ((*t)->value == (*t)->l->value)
+            while ((*t)->data == (*t)->l->data)
             {
                 tree temp  = (*t)->l ;
                 (*t)->l = temp ->l ;
