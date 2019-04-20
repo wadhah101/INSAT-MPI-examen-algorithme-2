@@ -40,12 +40,70 @@ int isBST(tree t)
 	return isBSTtool(t,INT_MIN,INT_MAX);
 }
 
+pile pairPile(pile *p1)
+{
+	pile p2 = creatPile();
+	file f = creatFile() ;
+	while(!emptyPile(*p1))
+	{
+		if (tetePile(*p1)%2 == 0)
+			{
+				empiler(&p2,tetePile(*p1));
+				depiler(p1);
+			}
+		else 
+		{
+			emfiler(&f,tetePile(*p1));
+			depiler(p1);
+		}
+	}
+	while(!emptyFile(f))
+	{
+		empiler(p1,teteFile(f));
+		defiler(&f);
+	}
+	while (!emptyPile(*p1))
+	{
+		emfiler(&f,tetePile(*p1));
+		depiler(p1);
+	}
+	while(!emptyFile(f))
+	{
+		empiler(p1,teteFile(f));
+		defiler(&f);
+	}
+	while (!emptyPile(p2))
+	{
+		emfiler(&f,tetePile(p2));
+		depiler(&p2);
+
+	}
+	while(!emptyFile(f))
+	{
+		empiler(&p2,teteFile(f));
+		defiler(&f);
+	}
+	return p2 ; 
+}
+//ex3
+int egaux (tree a,tree b)
+{
+	if (!a && !b)
+		return 1 ; 
+	if (a && !b)
+		return 0 ;
+	if (!a && b)
+		return 0 ;
+	if (a->value != b->value)
+		return 0 ; 
+	return egaux(a->l,b->l)*egaux(a->r,b->r);
+}
 
 int main()
 {
 	freopen("in.txt","r+",stdin);
 	freopen("out.txt","w+",stdout);
-	tree t ; 
+	tree t ,q=NULL; 
 	t = creatLeaf(4);
 	t->l = creatLeaf(2);
 	t->r = creatLeaf(33);
@@ -53,6 +111,14 @@ int main()
 	t->l->r = creatLeaf(3);
 	t->r->l = creatLeaf(22);
 	t->r->r = creatLeaf(54);
-	printTree(t);
-	printf("%d\n",isBST(t) );
+	q = creatLeaf(4);
+	q->l = creatLeaf(2);
+	q->r = creatLeaf(33);
+	q->l->l = creatLeaf(1);
+	q->l->r = creatLeaf(3);
+	q->r->l = creatLeaf(22);
+	q->r->r = creatLeaf(54);
+	//q->r->r->l = creatLeaf(5);
+
+	printf("%d\n",egaux(t,q));
 }

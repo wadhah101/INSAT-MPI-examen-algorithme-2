@@ -66,12 +66,12 @@ pile creatPile()
     return NULL ;
 }
 
-int PileVide(pile p)
+int emptyPile(pile p)
 {
     return p == NULL ;
 }
 
-void piler(pile *p, int n)
+void empiler(pile *p, int n)
 {
     pile y = (pile)malloc(sizeof(node)) ;
     y->val = n ;
@@ -98,29 +98,29 @@ int LongeurPile(pile p)
     while(p)
     {
         num ++ ;
-        piler(&q, tetePile(p));
+        empiler(&q, tetePile(p));
         depiler(&p);
     }
     while(q)
     {
-        piler(&p, tetePile(q));
+        empiler(&p, tetePile(q));
         depiler(&q);
     }
     return num ;
 }
 
-void printpile(pile p)
+void printPile(pile p)
 {
     pile q = creatPile();
     while(p)
     {
         printf("%d ", tetePile(p));
-        piler(&q, tetePile(p));
+        empiler(&q, tetePile(p));
         depiler(&p);
     }
     while(q)
     {
-        piler(&p, tetePile(q));
+        empiler(&p, tetePile(q));
         depiler(&q);
     }
     printf("\n");
@@ -140,18 +140,18 @@ file creatFile()
     return temp ;
 }
 
-int VideFile(file f)
+int emptyFile(file f)
 {
     return (f.first == NULL && f.last == NULL) ;
 }
 
-void enfiler(file *f, int n)
+void emfiler(file *f, int n)
 {
     node *temp ;
     temp = (node *)malloc(sizeof(node));
     temp->val = n ;
     temp->next = NULL;
-    if (VideFile(*f))
+    if (emptyFile(*f))
     {
         f->last = temp ;
         f->first = temp ;
@@ -165,6 +165,8 @@ void enfiler(file *f, int n)
 
 void defiler(file *f)
 {
+    if (emptyFile(*f))
+        return ; 
     if (f->first == f->last)
     {
         free(f->first);
@@ -187,15 +189,15 @@ int LongeurFile(file *f)
 {
     int num = 0 ;
     file g = creatFile() ;
-    while(!VideFile(*f))
+    while(!emptyFile(*f))
     {
-        enfiler(&g, teteFile(*f));
+        emfiler(&g, teteFile(*f));
         defiler(f);
         num ++ ;
     }
-    while(!VideFile(g))
+    while(!emptyFile(g))
     {
-        enfiler(f, teteFile(g));
+        emfiler(f, teteFile(g));
         defiler(&g);
     }
     return num ;
@@ -204,15 +206,15 @@ int LongeurFile(file *f)
 void printFile(file *f)
 {
     file g = creatFile() ;
-    while(!VideFile(*f))
+    while(!emptyFile(*f))
     {
         printf("%d ", teteFile(*f));
-        enfiler(&g, teteFile(*f));
+        emfiler(&g, teteFile(*f));
         defiler(f);
     }
-    while(!VideFile(g))
+    while(!emptyFile(g))
     {
-        enfiler(f, teteFile(g));
+        emfiler(f, teteFile(g));
         defiler(&g);
     }
     printf("\n");
