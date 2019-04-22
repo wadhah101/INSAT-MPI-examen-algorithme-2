@@ -78,7 +78,6 @@ list decompression(listC li)
 }
 
 //EX2
-
 file inverse(file f)
 {
     int kept = 1 ;
