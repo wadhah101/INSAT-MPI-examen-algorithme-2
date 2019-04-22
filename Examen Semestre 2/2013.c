@@ -4,7 +4,7 @@
 
 void sortpile(pile *p)
 {
-    pile pt = creatPile();
+    pile pt = newPile();
     int m, n = pileLength(*p);
     for (int i = n ; i >= 1 ; i--)
     {
@@ -31,7 +31,7 @@ int main()
 {
     freopen("in.txt", "r+", stdin);
     freopen("out.txt", "w+", stdout);
-    pile p = creatPile();
+    pile p = newPile();
     empiler(&p, 1);
     empiler(&p, 8);
     empiler(&p, 7);

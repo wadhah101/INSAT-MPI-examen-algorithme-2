@@ -18,7 +18,7 @@ void printlist(list l)
         printf("\n");
 }
 
-list createnode(int x)
+list newNode(int x)
 {
     list l;
     l = (list)malloc(sizeof(node));
@@ -31,10 +31,10 @@ list adjt(list l, int e)
 {
     if (!l)
     {
-        l = createnode(e);
+        l = newNode(e);
         return l;
     }
-    list temp = createnode(e);
+    list temp = newNode(e);
     temp->next = l;
     return temp;
 }
@@ -53,7 +53,7 @@ list readList(list l, int n)
     {
         int x;
         scanf("%d", &x);
-        l = createnode(x);
+        l = newNode(x);
         l->next = readList(l->next, n - 1);
     }
     else
@@ -61,7 +61,7 @@ list readList(list l, int n)
 }
 
 
-pile creatPile()
+pile newPile()
 {
     return NULL ;
 }
@@ -94,7 +94,7 @@ int tetePile(pile p)
 int pileLength(pile p)
 {
     int num = 0 ;
-    pile q = creatPile();
+    pile q = newPile();
     while(p)
     {
         num ++ ;
@@ -111,7 +111,7 @@ int pileLength(pile p)
 
 void printPile(pile p)
 {
-    pile q = creatPile();
+    pile q = newPile();
     while(p)
     {
         printf("%d ", tetePile(p));
@@ -132,7 +132,7 @@ typedef struct file
     struct node *first, *last ;
 } file;
 
-file creatFile()
+file newFile()
 {
     file temp ;
     temp.first = NULL ;
@@ -170,7 +170,7 @@ void defiler(file *f)
     if (f->first == f->last)
     {
         free(f->first);
-        *f = creatFile();
+        *f = newFile();
     }
     else
     {
@@ -188,7 +188,7 @@ int teteFile(file f)
 int LongeurFile(file *f)
 {
     int num = 0 ;
-    file g = creatFile() ;
+    file g = newFile() ;
     while(!emptyFile(*f))
     {
         emfiler(&g, teteFile(*f));
@@ -205,7 +205,7 @@ int LongeurFile(file *f)
 
 void printFile(file *f)
 {
-    file g = creatFile() ;
+    file g = newFile() ;
     while(!emptyFile(*f))
     {
         printf("%d ", teteFile(*f));

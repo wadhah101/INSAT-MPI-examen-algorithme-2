@@ -9,7 +9,7 @@ typedef struct leaf
 
 typedef  leaf *tree  ;
 
-tree creatLeaf(int n)
+tree newLeaf(int n)
 {
     tree t = (tree)malloc(sizeof(leaf)) ;
     t->data = n ;
@@ -28,7 +28,7 @@ void preOrderTraversal(tree t)
 {
     if (!t)
         return ;
-    printf("%d\n", t->data);
+    printf("%d ", t->data);
     preOrderTraversal(t->l);
     preOrderTraversal(t->r);
 }
@@ -38,7 +38,7 @@ void inOrderTraversal(tree t)
     if (!t)
         return ;
     inOrderTraversal(t->l);
-    printf("%d\n", t->data);
+    printf("%d ", t->data);
     inOrderTraversal(t->r);
 }
 
@@ -48,7 +48,7 @@ void postOrderTraversal(tree t)
         return ;
     postOrderTraversal(t->l);
     postOrderTraversal(t->r);
-    printf("%d\n", t->data);
+    printf("%d ", t->data);
 }
 
 int treeHeight(tree t)
@@ -192,12 +192,12 @@ void LevTinsert(Tlist *l, int e)
                 return ;
             if(!nav->data->r)
             {
-                nav->data->r = creatLeaf(e);
+                nav->data->r = newLeaf(e);
                 return ;
             }
             else if (!nav->data->l)
             {
-                nav->data->l = creatLeaf(e);
+                nav->data->l = newLeaf(e);
                 return ;
             }
             nav = nav->next;
@@ -221,7 +221,7 @@ void insertIntoTree(tree *t, int e)
     //insert into the first free position of t
     if (!(*t))
     {
-        *t = creatLeaf(e) ;
+        *t = newLeaf(e) ;
     }
     Tlist l = createTnode(*t);
     LevTinsert(&l, e);

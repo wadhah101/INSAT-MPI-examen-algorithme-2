@@ -9,7 +9,7 @@ typedef struct nodeC
     struct nodeC *next ;
 } nodeC, *listC;
 
-listC createnodeC(int x)
+listC newNodeC(int x)
 {
     listC l;
     l = (listC)malloc(sizeof(nodeC));
@@ -23,10 +23,10 @@ listC adjtC(listC l, int e)
 {
     if (!l)
     {
-        l = createnodeC(e);
+        l = newNodeC(e);
         return l;
     }
-    listC temp = createnodeC(e);
+    listC temp = newNodeC(e);
     temp->next = l;
     return temp;
 }
@@ -51,7 +51,7 @@ listC compression(list l)
         listC li = compression(l->next);
         if (!li)
         {
-            return createnodeC(l->data);
+            return newNodeC(l->data);
         }
         if (l->data == li->data)
         {
@@ -81,7 +81,7 @@ list decompression(listC li)
 file inverse(file f)
 {
     int kept = 1 ;
-    file f0 = creatFile();
+    file f0 = newFile();
     int n = 0 ;
     while (!emptyFile(f))
     {
@@ -129,16 +129,16 @@ int main()
 {
     freopen("in.txt", "r+", stdin);
     freopen("out.txt", "w+", stdout);
-    tree t = creatLeaf(4);
-    t->r = creatLeaf(6);
-    t->l = creatLeaf(4);
-    t->r->r = creatLeaf(7);
-    t->r->l = creatLeaf(6);
-    t->l->l = creatLeaf(2);
-    t->l->l->l = creatLeaf(1);
-    t->l->l->r = creatLeaf(3);
-    t->r->l->l = creatLeaf(6);
-    t->r->l->l->l = creatLeaf(5);
+    tree t = newLeaf(4);
+    t->r = newLeaf(6);
+    t->l = newLeaf(4);
+    t->r->r = newLeaf(7);
+    t->r->l = newLeaf(6);
+    t->l->l = newLeaf(2);
+    t->l->l->l = newLeaf(1);
+    t->l->l->r = newLeaf(3);
+    t->r->l->l = newLeaf(6);
+    t->r->l->l->l = newLeaf(5);
     printTree(t);
     suppred(&t, 6);
     printf("\n\n\nModified tree: \n\n\n");

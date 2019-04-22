@@ -5,7 +5,7 @@ int main()
     freopen("in.txt", "r+", stdin);
     freopen("out.txt", "w+", stdout);
     printf("Partie pile\n");
-    pile p = creatPile();
+    pile p = newPile();
     printf("Pile initiale: ");
     piler(&p, 100);
     piler(&p, 50);
@@ -20,7 +20,7 @@ int main()
     printf("Longeur de Pile : %d\nPile apres Longeur Pile :", LongeurPile(p));
     printpile(p);
     printf("\nPartie File\n");
-    file f = creatFile();
+    file f = newFile();
     printf("File initiale: ");
     enfiler(&f, 89);
     enfiler(&f, 990);

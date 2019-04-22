@@ -18,7 +18,7 @@ int egaux (tree a, tree b)
 pile pairPile(pile *p1)
 {
     pile p2 = creatPile();
-    file f = creatFile() ;
+    file f = newFile() ;
     while(!emptyPile(*p1))
     {
         if (tetePile(*p1) % 2 == 0)
