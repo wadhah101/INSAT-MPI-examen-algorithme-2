@@ -4,9 +4,9 @@
 //EX1
 typedef struct nodeC
 {
-    int data;
-    int num;
-    struct nodeC *next;
+    int data ;
+    int num ;
+    struct nodeC *next ;
 } nodeC, *listC;
 
 listC newNodeC(int x)
@@ -45,7 +45,7 @@ void printlistC(listC l)
 listC compression(list l)
 {
     if (!l)
-        return NULL;
+        return NULL ;
     else
     {
         listC li = compression(l->next);
@@ -55,8 +55,8 @@ listC compression(list l)
         }
         if (l->data == li->data)
         {
-            li->num++;
-            return li;
+            li->num ++ ;
+            return li ;
         }
         else
             return adjtC(li, l->data);
@@ -66,31 +66,32 @@ listC compression(list l)
 list decompression(listC li)
 {
     if (!li)
-        return NULL;
+        return NULL ;
     else
     {
         list l = decompression(li->next);
-        for (int i = 0; i < li->num; i++)
+        for (int i = 0 ; i < li->num; i++)
             l = adjt(l, li->data);
-        return l;
+        return l ;
     }
+
 }
 
 //EX2
 file inverse(file f)
 {
-    int kept = 1;
+    int kept = 1 ;
     file f0 = newFile();
-    int n = 0;
+    int n = 0 ;
     while (!emptyFile(f))
     {
         emfiler(&f0, teteFile(f));
         defiler(&f);
         n++;
     }
-    for (int i = n - 1; i >= 0; i--)
+    for (int i = n - 1 ; i >= 0 ; i--)
     {
-        for (int j = 0; j < i; j++)
+        for (int j = 0 ; j < i; j++ )
         {
             emfiler(&f0, teteFile(f0));
             defiler(&f0);
@@ -99,7 +100,7 @@ file inverse(file f)
         defiler(&f0);
     }
 
-    return f;
+    return f ;
 }
 
 //EX3
@@ -111,34 +112,35 @@ void suppred(tree *t, int n)
         {
             while ((*t)->data == (*t)->l->data)
             {
-                tree temp = (*t)->l;
-                (*t)->l = temp->l;
+                tree temp  = (*t)->l ;
+                (*t)->l = temp ->l ;
                 free(temp);
                 if ((*t)->l == NULL)
-                    break;
+                    break ;
             }
         }
         suppred(&(*t)->l, n);
         suppred(&(*t)->r, n);
     }
+
 }
 
 int main()
 {
     freopen("in.txt", "r+", stdin);
     freopen("out.txt", "w+", stdout);
-    tree t = newLeaf(3);
-    t->r = newLeaf(36);
+    tree t = newLeaf(4);
+    t->r = newLeaf(6);
     t->l = newLeaf(4);
     t->r->r = newLeaf(7);
     t->r->l = newLeaf(6);
     t->l->l = newLeaf(2);
-    t->l->l->l = newLeaf(88);
+    t->l->l->l = newLeaf(1);
     t->l->l->r = newLeaf(3);
     t->r->l->l = newLeaf(6);
     t->r->l->l->l = newLeaf(5);
     printTree(t);
     suppred(&t, 6);
-    printf("\n\n\nModified tre: \n\n\n");
+    printf("\n\n\nModified tree: \n\n\n");
     printTree(t);
 }
