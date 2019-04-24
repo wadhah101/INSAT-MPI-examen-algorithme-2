@@ -5,9 +5,7 @@ typedef struct leaf
 {
     int data ;
     struct leaf *l, *r ;
-} leaf;
-
-typedef  leaf *tree  ;
+} leaf, *tree;
 
 tree newLeaf(int n)
 {
