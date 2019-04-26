@@ -1,5 +1,5 @@
-#include "../../Mylibs/List_lib.h"
-#include "../../Mylibs/Tree_lib.h"
+#include "../../Mylibs/list.h"
+#include "../../Mylibs/tree.h"
 #include <limits.h>
 //EX1
 
@@ -9,6 +9,7 @@ int nbfils(tree t)
         return 0 ;
     if (t->r && !t->l)
         return 1 + nbfils(t->r);
+    int i ; 
     if (!t->r && t->l)
         return 1 + nbfils(t->l);
     return nbfils(t->r) + nbfils(t->l) ;

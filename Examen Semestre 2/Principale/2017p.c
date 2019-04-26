@@ -1,5 +1,5 @@
-#include "../../Mylibs/List_lib.h"
-#include "../../Mylibs/Tree_lib.h"
+#include "../../Mylibs/list.h"
+#include "../../Mylibs/tree.h"
 
 //EX1
 typedef struct nodeC

@@ -1,4 +1,4 @@
-#include "../../Mylibs/Tree_lib.h"
+#include "../../Mylibs/tree.h"
 
 tree minBSt(tree t)
 {

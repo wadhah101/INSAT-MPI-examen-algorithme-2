@@ -1,5 +1,5 @@
-#include "../../Mylibs/Tree_lib.h"
-#include "../../Mylibs/List_lib.h"
+#include "../../Mylibs/tree.h"
+#include "../../Mylibs/list.h"
 
 
 void sortpile(pile *p)
