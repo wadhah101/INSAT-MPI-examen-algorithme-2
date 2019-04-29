@@ -122,8 +122,6 @@ int listlength(list l)
 }
 int main()
 {
-	freopen("in.txt","r+",stdin);
-	freopen("out.txt","w+",stdout);	
 	list l ; 
 	//lire une liste de n element 
 	l = readList(l,4);

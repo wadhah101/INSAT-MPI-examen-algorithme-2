@@ -1,0 +1,9 @@
+Affichage Pile:
+Note1 = 5.00 | Note2 = 0.00 | moy = 2.50
+Note1 = 13.00 | Note2 = 10.00 | moy = 11.50
+Note1 = 3.00 | Note2 = 2.00 | moy = 2.50
+Note1 = 10.00 | Note2 = 15.00 | moy = 12.50
+Note1 = 1.00 | Note2 = 7.00 | moy = 4.00
+Affichage Pile apres la supression des noeud a moyenne inferieur a 10:
+Note1 = 13.00 | Note2 = 10.00 | moy = 11.50
+Note1 = 10.00 | Note2 = 15.00 | moy = 12.50
